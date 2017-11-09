@@ -1,7 +1,10 @@
-// swift-tools-version:3.1
+// swift-tools-version:4.0
 
 import PackageDescription
 
 let package = Package(
-    name: "HexString"
+    name: "HexString",
+    targets: [
+      .target(name: "HexString", path: ".", sources: ["Sources"])
+    ]
 )

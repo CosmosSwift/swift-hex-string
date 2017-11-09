@@ -91,7 +91,7 @@ extension String {
         guard let data = self.toData() else {
             return nil
         }
-        let array = data.filter { (u) -> Bool in
+        let array: [UInt8] = data.filter { (u) -> Bool in
             return true
         }
         return array
