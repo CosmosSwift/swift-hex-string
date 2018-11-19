@@ -58,7 +58,18 @@ extension String {
             }
         }
         
-        let utf16 = self.utf16
+        let str: String
+        if (self.prefix(2).uppercased() == "0X") {
+            str = String(self.suffix(from: self.index(self.startIndex, offsetBy: 2)))
+        } else {
+            str = self
+        }
+        let utf16: UTF16View
+        if (str.count % 2 == 1) {
+            utf16 = ("0" + str).utf16
+        } else {
+            utf16 = str.utf16
+        }
         var data = Data(capacity: utf16.count/2)
         
         var i = utf16.startIndex
@@ -70,12 +81,12 @@ extension String {
                     return nil
             }
             #if os(Linux)
-                var value = hi << 4 + lo
-                let buffer = UnsafeBufferPointer(start: &value, count:1)
-                data.append(buffer)
+            var value = hi << 4 + lo
+            let buffer = UnsafeBufferPointer(start: &value, count:1)
+            data.append(buffer)
             #else
-                let value = hi << 4 + lo
-                data.append(value)
+            let value = hi << 4 + lo
+            data.append(value)
             #endif
             
             guard let next = utf16.index(i, offsetBy:2, limitedBy: utf16.endIndex) else {
