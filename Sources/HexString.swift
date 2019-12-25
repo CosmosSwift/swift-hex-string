@@ -28,10 +28,15 @@ import Foundation
 
 extension Data {
     public func toHexString () -> String? {
-        
-        var hexadecimalString = ""
-        self.forEach {ui in hexadecimalString += String(format: "%02X", ui)}
-        return hexadecimalString
+        return self.hex
+    }
+    
+    public var hex: String {
+        get {
+            return self.reduce("") { (r, u) -> String in
+                r + String(format: "%02X", u)
+            }
+        }
     }
 }
 
