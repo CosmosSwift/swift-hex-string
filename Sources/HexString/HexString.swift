@@ -33,9 +33,7 @@ extension Data {
     
     public var hex: String {
         get {
-            return self.reduce("") { (r, u) -> String in
-                r + String(format: "%02X", u)
-            }
+            self.reduce("") {$0 + String(format: "%02X", $1)}
         }
     }
 }
