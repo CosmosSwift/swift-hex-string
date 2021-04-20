@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "HexString",
+    name: "swift-hex-string",
     platforms: [
         .macOS(.v10_10),
         .iOS(.v8),
