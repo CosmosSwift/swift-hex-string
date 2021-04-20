@@ -27,10 +27,6 @@
 import Foundation
 
 extension Data {
-    public func toHexString () -> String? {
-        return self.hex
-    }
-    
     public var hex: String {
         get {
             self.reduce("") {$0 + String(format: "%02X", $1)}
